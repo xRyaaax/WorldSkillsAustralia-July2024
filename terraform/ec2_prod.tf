@@ -12,10 +12,10 @@ resource "aws_subnet" "private" {
 resource "aws_instance" "web_server" {
   count         = length(var.private_subnet)
   ami           = "ami-032346ab877c418af" 
-  instance_type = "t2.large"
+  instance_type = "t3.large"
   subnet_id     = aws_subnet.private[count.index].id
   private_ip    = cidrhost(aws_subnet.private[count.index].cidr_block, 10)
-  vpc_security_group_ids      = ["sg-052ab755afe0c824e"]
+  vpc_security_group_ids      = ["sg-0af54d9576867e868"]
   associate_public_ip_address = true
   key_name                    = "WORLDSKILLSAUS"
   tags = {
@@ -26,10 +26,10 @@ resource "aws_instance" "web_server" {
 resource "aws_instance" "vuln_vm" {
   count         = length(var.private_subnet)
   ami           = "ami-032346ab877c418af" 
-  instance_type = "t2.micro"
+  instance_type = "t3.micro"
   subnet_id     = aws_subnet.private[count.index].id
   private_ip    = cidrhost(aws_subnet.private[count.index].cidr_block, 100)
-  vpc_security_group_ids      = ["sg-052ab755afe0c824e"]
+  vpc_security_group_ids      = ["sg-0af54d9576867e868"]
   associate_public_ip_address = true
   key_name                    = "WORLDSKILLSAUS"
   tags = {
