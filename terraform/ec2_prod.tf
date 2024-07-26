@@ -12,7 +12,7 @@ resource "aws_subnet" "private" {
 resource "aws_instance" "web_server" {
   count         = length(var.private_subnet)
   ami           = "ami-032346ab877c418af" 
-  instance_type = "t3.large"
+  instance_type = "t3.xlarge"
   subnet_id     = aws_subnet.private[count.index].id
   private_ip    = cidrhost(aws_subnet.private[count.index].cidr_block, 10)
   vpc_security_group_ids      = ["sg-0af54d9576867e868"]
@@ -26,7 +26,7 @@ resource "aws_instance" "web_server" {
 resource "aws_instance" "vuln_vm" {
   count         = length(var.private_subnet)
   ami           = "ami-032346ab877c418af" 
-  instance_type = "t3.micro"
+  instance_type = "t3.xlarge"
   subnet_id     = aws_subnet.private[count.index].id
   private_ip    = cidrhost(aws_subnet.private[count.index].cidr_block, 100)
   vpc_security_group_ids      = ["sg-0af54d9576867e868"]
