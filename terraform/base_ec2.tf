@@ -27,7 +27,7 @@ resource "aws_security_group" "WORLDSKILLSAUS-dev-sg" {
 // box-001
 resource "aws_instance" "vpn_server" {
   ami                         = "ami-032346ab877c418af" # Canonical, Ubuntu, 24.04 LTS, amd64 noble image build on 2024-04-23
-  instance_type               = "t3.large"
+  instance_type               = "t3.xlarge"
   vpc_security_group_ids      = ["${aws_security_group.WORLDSKILLSAUS-dev-sg.id}"]
   subnet_id                   = aws_subnet.WORLDSKILLSAUS-subnet.id
   associate_public_ip_address = true
@@ -43,7 +43,7 @@ resource "aws_instance" "vpn_server" {
 // box-002
 resource "aws_instance" "box-002" {
   ami                         = "ami-032346ab877c418af" # Canonical, Ubuntu, 24.04 LTS, amd64 noble image build on 2024-04-23
-  instance_type               = "t3.large"
+  instance_type               = "t3.xlarge"
   vpc_security_group_ids      = ["${aws_security_group.WORLDSKILLSAUS-dev-sg.id}"]
   subnet_id                   = aws_subnet.WORLDSKILLSAUS-subnet.id
   associate_public_ip_address = true
